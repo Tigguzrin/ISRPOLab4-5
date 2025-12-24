@@ -1,4 +1,5 @@
 import unittest
+from decimal import Decimal
 
 def square(n):
     '''Принимает число n, возвращает квадрат числа n
@@ -9,7 +10,7 @@ def square(n):
             Возвращаемое значение:
                     - (int/float): квадрат числа
     '''
-    return n**2
+    return Decimal(str(n))**2
 
 def add_binary(a,b):
     '''
@@ -22,7 +23,10 @@ def add_binary(a,b):
             Возвращаемое значение:
                     binary_sum (str): двочиная строка a и b
     '''
-    binary_sum = bin(a+b)[2:]
+    if a+b>=0:
+        binary_sum = bin(a+b)[2:]
+    else:
+        binary_sum = '-'+bin(a+b)[3:]
     return binary_sum
 
 def sqrt(number, n):
@@ -35,6 +39,6 @@ def sqrt(number, n):
             Возвращаемое значение:
                     - (float): корень числа n-ой степени
     '''
+    if number<0:
+        raise ValueError("Аргумент корня не может быть отрицательным!")
     return number**(1/n)
-        
-
