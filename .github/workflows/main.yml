@@ -26,7 +26,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Lint with ruff
-      - run: ruff check
+      - uses: astral-sh/ruff-action@v3
+      - run: ruff check --fix
+      - run: ruff format
 
       - name: Run unit tests
         run: python -m unittest tests/test.py
